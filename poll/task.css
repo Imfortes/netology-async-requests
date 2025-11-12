@@ -9,3 +9,17 @@ body {
 .poll__title {
     margin-bottom: 20px;
 }
+
+.poll__answer {
+    transition: .5s;
+}
+
+.poll__answer-active {
+    background: #686868;
+}
+
+.response__answers {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
