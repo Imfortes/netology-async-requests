@@ -68,15 +68,17 @@ document.addEventListener("DOMContentLoaded", function(e) {
             const result = await response.json()
             console.log('Результат голосования:', result)
 
-            // const votesCounter = result.stat.votes.reduce((acc, v) => acc + v, 0);
-            // console.log(votesCounter);
+            let votesCounter = result.stat.reduce((acc, cur) => acc + cur.votes, 0)
+
+            // result.stat.forEach(el => parseInt(votesCounter += el.votes))
 
             const poll = `
                 <div class="response">
                     <div class="response__answers">
                         ${result.stat.map(item => `
-                            <span class="response__answer">${item.answer}: ${item.votes}</span>
+                            <span class="response__answer">${item.answer}: ${item.votes} - ${parseFloat(item.votes / votesCounter * 100).toFixed(2)}%</span>
                         `).join('')}
+                        <div class="total">Всего голосов: ${votesCounter}</div>
                     </div>                
                 </div>
             `
